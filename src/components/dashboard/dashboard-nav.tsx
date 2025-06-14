@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { navItems } from "@/config/dashboard-nav";
-import { getUserCredits } from "@/lib/credits";
 import { Loader2, Lock } from "lucide-react";
 import Upgrade from "./upgrade";
 import { currentUser } from "@clerk/nextjs/server";
@@ -10,7 +9,6 @@ import CreditsDisplay from "./credits-display";
 
 const DashboardNav = async () => {
   const user = await currentUser();
-  const credits = await getUserCredits();
 
   return (
     <div className="grid gap-3">

@@ -1,6 +1,5 @@
 "use client";
 
-import { getUserCredits } from "@/lib/credits";
 import React, { useEffect, useState } from "react";
 
 const CreditsDisplay = () => {
