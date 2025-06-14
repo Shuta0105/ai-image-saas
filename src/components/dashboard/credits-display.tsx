@@ -1,18 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const CreditsDisplay = () => {
-  const [credits, setCredits] = useState<number | null | undefined>(null);
+  const { data } = useSWR("/api/user-credits", fetcher);
 
-  useEffect(() => {
-    fetch("/api/user-credits")
-      .then((res) => res.json())
-      .then((data) => setCredits(data.credits))
-      .catch(() => setCredits(null));
-  }, []);
-
-  return <div className="mt-2">{credits}</div>;
+  return <div className="mt-2">{data.credits}</div>;
 };
 
 export default CreditsDisplay;

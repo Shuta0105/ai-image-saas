@@ -8,7 +8,7 @@ import { Download, Image, Loader2 } from "lucide-react";
 import { generateImage } from "@/actions/action";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { GenerateImageState } from "@/types/type";
-import { useRouter } from "next/navigation";
+import { mutate } from "swr";
 
 const initialState = {
   imageUrl: undefined,
@@ -16,13 +16,12 @@ const initialState = {
 };
 
 const ImageGenerator = () => {
-  const router = useRouter();
   const { isSignedIn } = useUser();
 
   const [state, formAction, isPending] = useActionState(
     async (state: GenerateImageState, formData: FormData) => {
       const response = await generateImage(state, formData);
-      router.refresh();
+      mutate("/api/user-credits");
       return response;
     },
     initialState
