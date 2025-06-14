@@ -5,10 +5,10 @@ import { navItems } from "@/config/dashboard-nav";
 import { getUserCredits } from "@/lib/credits";
 import { Loader2, Lock } from "lucide-react";
 import Upgrade from "./upgrade";
-import { useUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 const DashboardNav = async () => {
-  const { user } = useUser();
+  const user = await currentUser();
   const credits = await getUserCredits();
 
   return (

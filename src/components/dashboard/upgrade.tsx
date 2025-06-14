@@ -2,10 +2,10 @@ import React from "react";
 import { getUserSubscriptionStatus } from "@/lib/users";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 const Upgrade = async () => {
-  const { user } = useUser();
+  const user = await currentUser();
 
   if (!user) {
     return;
