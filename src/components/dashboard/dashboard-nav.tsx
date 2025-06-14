@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { navItems } from "@/config/dashboard-nav";
 import { getUserCredits } from "@/lib/credits";
-import { currentUser } from "@clerk/nextjs/server";
 import { Loader2, Lock } from "lucide-react";
 import Upgrade from "./upgrade";
 import { useUser } from "@clerk/nextjs";
