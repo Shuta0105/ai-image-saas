@@ -36,7 +36,7 @@ export const createUser = async (clerkId: string, email: string) => {
 
 export async function deleteUser(id: string) {
   try {
-    const user = await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx) => {
       await tx.subscription.deleteMany({
         where: {
           user: {

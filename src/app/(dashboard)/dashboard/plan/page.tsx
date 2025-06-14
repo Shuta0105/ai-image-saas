@@ -14,7 +14,7 @@ const initialState: StripeSessionState = {
 };
 
 const Plan = () => {
-  const [_state, formAction] = useActionState(
+  const [, formAction] = useActionState(
     async (state: StripeSessionState, formData: FormData) => {
       const result = await createStripeSession(state, formData);
 

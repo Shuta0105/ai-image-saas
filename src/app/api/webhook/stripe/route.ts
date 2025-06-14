@@ -21,8 +21,8 @@ export async function POST(req: Request) {
           signature,
           endpointSecret
         );
-      } catch (err: any) {
-        console.log(`⚠️  Webhook signature verification failed.`, err.message);
+      } catch {
+        console.log(`⚠️  Webhook signature verification failed.`);
         return new Response("Webhook error", { status: 400 });
       }
     }
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     }
 
     return new Response("Webhook received", { status: 200 });
-  } catch (error) {
+  } catch {
     return new Response("Error verifying webhook", { status: 400 });
   }
 }

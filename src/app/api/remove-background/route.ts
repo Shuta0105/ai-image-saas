@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import axios from "axios";
 import FormData from "form-data";
 import { NextResponse } from "next/server";
