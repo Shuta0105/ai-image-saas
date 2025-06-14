@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+"use client";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { navItems } from "@/config/dashboard-nav";
@@ -6,10 +8,19 @@ import { getUserCredits } from "@/lib/credits";
 import { currentUser } from "@clerk/nextjs/server";
 import { Loader2, Lock } from "lucide-react";
 import Upgrade from "./upgrade";
+import { useUser } from "@clerk/nextjs";
 
 const DashboardNav = async () => {
-  const credits = await getUserCredits();
-  const user = await currentUser();
+  const [credits, setCredits] = useState<number | null | undefined>(0);
+  const { user } = useUser();
+
+  useEffect(() => {
+    const fetchUserCredits = async () => {
+      const credits = await getUserCredits();
+      setCredits(credits);
+    };
+    fetchUserCredits();
+  }, [credits]);
 
   return (
     <div className="grid gap-3">
