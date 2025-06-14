@@ -6,6 +6,7 @@ import { getUserCredits } from "@/lib/credits";
 import { Loader2, Lock } from "lucide-react";
 import Upgrade from "./upgrade";
 import { currentUser } from "@clerk/nextjs/server";
+import CreditsDisplay from "./credits-display";
 
 const DashboardNav = async () => {
   const user = await currentUser();
@@ -44,7 +45,7 @@ const DashboardNav = async () => {
           <div className="rounded-lg border p-2">
             <div className="text-sm text-muted-foreground">残りクレジット</div>
             {user ? (
-              <div className="mt-2">{credits}</div>
+              <CreditsDisplay />
             ) : (
               <div className="flex items-center mt-2">
                 <Lock />
