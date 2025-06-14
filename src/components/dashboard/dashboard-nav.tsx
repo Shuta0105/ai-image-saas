@@ -1,6 +1,4 @@
-"use client";
-
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { navItems } from "@/config/dashboard-nav";
@@ -10,16 +8,8 @@ import Upgrade from "./upgrade";
 import { useUser } from "@clerk/nextjs";
 
 const DashboardNav = async () => {
-  const [credits, setCredits] = useState<number | null | undefined>(0);
   const { user } = useUser();
-
-  useEffect(() => {
-    const fetchUserCredits = async () => {
-      const credits = await getUserCredits();
-      setCredits(credits);
-    };
-    fetchUserCredits();
-  }, [credits]);
+  const credits = await getUserCredits();
 
   return (
     <div className="grid gap-3">
