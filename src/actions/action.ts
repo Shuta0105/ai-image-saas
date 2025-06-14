@@ -1,6 +1,7 @@
 "use server";
 
 import { decrementCredits, getUserCredits } from "@/lib/credits";
+import { GenerateImageState } from "@/types/type";
 import { currentUser } from "@clerk/nextjs/server";
 import axios from "axios";
 import { revalidatePath } from "next/cache";
@@ -35,10 +36,7 @@ export const generateImage = async (
   };
 };
 
-type GenerateImageState = {
-  imageUrl?: string;
-  keyword?: string;
-};
+
 
 export const removeBackground = async (
   _state: RemoveBackgroundState,
