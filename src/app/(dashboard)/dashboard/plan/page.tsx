@@ -8,8 +8,6 @@ import { StripeSessionState } from "@/types/type";
 import { Check } from "lucide-react";
 import React, { useActionState } from "react";
 
-export const dynamic = "force-dynamic";
-
 const initialState: StripeSessionState = {
   status: "idle",
   error: "",
